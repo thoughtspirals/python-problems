@@ -1,0 +1,19 @@
+##for random array any order number
+import random
+
+#reverse array without using slicing
+def reverseArray(arr):
+    start = 0
+    end = len(arr) - 1
+    while start < end:
+        arr[start] ,arr[end] = arr[end], arr[start]
+        start += 1
+        end -= 1
+    return arr
+
+
+
+arr = [random.randint(1, 100) for i in range(15)]
+print(arr)
+print(reverseArray(arr))
+
