@@ -1,0 +1,12 @@
+
+#function to find the sum of all the digits in a number
+def sum_of_digits(n):
+    sum = 0
+    while n > 0:
+        sum += n % 10
+        n = n // 10
+    return sum
+
+#test case
+print(sum_of_digits(12345))  # Output: 15
+
