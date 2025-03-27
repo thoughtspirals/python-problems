@@ -1,0 +1,46 @@
+# Constructing the tree:
+#       10
+#      /  \
+#     5    15
+#         /  \
+#        12   20
+
+from collections import deque
+
+class Solution(object):
+    def isValidBST(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: bool
+        """
+        def validate(node, min_val, max_val):
+            if not node:
+                return True  # Empty trees are valid BSTs
+            
+            if not (min_val < node.val < max_val):
+                return False  # Node's value must be within the valid range
+            
+            # Recursively check left and right subtrees
+            return (validate(node.left, min_val, node.val) and
+                    validate(node.right, node.val, max_val))
+        
+        return validate(root, float('-inf'), float('inf'))
+
+
+
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+# Creating nodes
+root = TreeNode(10)
+root.left = TreeNode(5)
+root.right = TreeNode(15)
+root.right.left = TreeNode(12)
+root.right.right = TreeNode(20)
+
+# Running the function
+solution = Solution()
+print(solution.isValidBST(root))  # Expected output: True
