@@ -1,0 +1,33 @@
+from bisect import bisect_left
+
+class Solution:
+    def suggestedProducts(self, products, searchQuery):
+        # Step 1: Sort products lexicographically
+        products.sort()
+        
+        result = []
+        prefix = ""
+        
+        for char in searchQuery:
+            prefix += char  # Add the next character to form a prefix
+            
+            # Step 2: Binary search for prefix starting position
+            index = bisect_left(products, prefix)
+            
+            # Step 3: Collect up to 3 suggestions
+            suggestions = []
+            for i in range(index, min(index + 3, len(products))):
+                if products[i].startswith(prefix):
+                    suggestions.append(products[i])
+                else:
+                    break  # Stop when the prefix no longer matches
+            
+            result.append(suggestions)
+        
+        return result
+
+# Example usage
+products = ["mobile", "mouse", "moneypot", "monitor", "mousepad"]
+searchQuery = "mo"
+solution = Solution()
+print(solution.suggestedProducts(products, searchQuery))
