@@ -1,0 +1,25 @@
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        min_price = float('inf')  # Start with an infinitely large value
+        max_profit = 0  # We initialize the max profit to 0
+        
+        for price in prices:
+            # Update the minimum price
+            if price < min_price:
+                min_price = price
+            # Calculate the profit if we sell on the current day
+            profit = price - min_price
+            # Update max profit if the current profit is greater
+            if profit > max_profit:
+                max_profit = profit
+        
+        return max_profit  # Return the maximum profit
+
+# Example Usage
+solution = Solution()
+prices = [7, 1, 5, 3, 6, 4]
+print(solution.maxProfit(prices))  # Output: 5 (Buy at 1, sell at 6)
