@@ -1,0 +1,23 @@
+def isSubset(arr1, arr2):
+    
+    setArr1 = set(arr1)
+    
+    if len(setArr1) != 0 and len(arr2) == 0:
+        return True
+    
+    if len(setArr1) == 0 and len(arr2) != 0:
+        return False
+    
+    if len(setArr1) == 0 and len(arr2) == 0:
+        return True
+    
+    for element in arr2:
+        if element not in setArr1:
+            return False
+        
+    return True
+
+arr1 = [1, 2, 3, 4, 5]
+arr2 = [1, 2, 3,9]
+
+print (isSubset(arr1, arr2))  
